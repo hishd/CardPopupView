@@ -6,16 +6,22 @@
 //
 
 import SwiftUI
+import CardPopupView
 
 struct ContentView: View {
+    @State var isCardPresented: Bool = false
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        ZStack {
+            Button("Toggle") {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    self.isCardPresented.toggle()
+//                    self.offset = self.isPresented ? 0 : -screenHeight
+                }
+            }
+            
+            CardPopupView(isPresented: $isCardPresented)
         }
-        .padding()
     }
 }
 
