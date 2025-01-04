@@ -10,10 +10,10 @@ import SwiftUI
 
 @available(iOS 14.0, macOS 10.15, tvOS 13.0, *)
 public extension View {
-    func cardPopupView(isPresented: Binding<Bool>, content:  @escaping () -> some View) -> some View {
+    func cardPopupView(isPresented: Binding<Bool>, backgroundType: CardBackground = .solid(.gray), content:  @escaping () -> some View) -> some View {
         ZStack {
             self
-            CardPopup(isPresented: isPresented, content: content)
+            CardPopup(isPresented: isPresented, cardBackgroundType: backgroundType, content: content)
         }
     }
 }

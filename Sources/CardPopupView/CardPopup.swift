@@ -4,6 +4,8 @@ import SwiftUI
 struct CardPopup<CardContent: View>: View {
     @Binding var isPresented: Bool
     @State private var offset: CGFloat = 0
+    
+    let cardBackgroundType: CardBackground
     var content: () -> CardContent
     
     public var body: some View {
@@ -11,7 +13,7 @@ struct CardPopup<CardContent: View>: View {
             let screenHeight = proxy.frame(in: .global).height
             
             ZStack {
-                LinearGradient(gradient: .init(colors: [.orange, .red]), startPoint: .top, endPoint: .bottom)
+                cardBackground
                 
                 VStack {
                     HStack {
@@ -42,6 +44,25 @@ struct CardPopup<CardContent: View>: View {
             .animation(.easeInOut(duration: 0.5))
         }
     }
+}
+
+@available(iOS 14.0, macOS 10.15, tvOS 13.0, *)
+extension CardPopup {
+    
+    @ViewBuilder
+    var cardBackground: some View {
+        switch cardBackgroundType {
+        case .solid(let color):
+            color
+        case .gradient(let gradient):
+            gradient
+        }
+    }
+}
+
+public enum CardBackground {
+    case solid(Color)
+    case gradient(LinearGradient)
 }
 
 //@available(iOS 14.0, macOS 10.15, tvOS 13.0, *)

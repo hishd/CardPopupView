@@ -17,7 +17,18 @@ struct ContentView: View {
                 self.isCardPresented.toggle()
             }
         }
-        .cardPopupView(isPresented: $isCardPresented) {
+        .cardPopupView(
+            isPresented: $isCardPresented,
+            backgroundType: .gradient(
+                LinearGradient(
+                    gradient: .init(
+                        colors: [.orange, .red]
+                    ),
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+            )
+        ) {
             EmptyView()
         }
     }
