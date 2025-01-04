@@ -14,14 +14,10 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             Button("Toggle") {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    self.isCardPresented.toggle()
-//                    self.offset = self.isPresented ? 0 : -screenHeight
-                }
+                self.isCardPresented.toggle()
             }
-            
-            CardPopupView(isPresented: $isCardPresented)
         }
+        .cardPopupView(isPresented: $isCardPresented)
     }
 }
 
