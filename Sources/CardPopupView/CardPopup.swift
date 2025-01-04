@@ -28,7 +28,7 @@ struct CardPopup<CardContent: View>: View {
                 }
                 .frame(maxHeight: .infinity, alignment: .topLeading)
                 
-                content()
+                content().padding(.top, 40)
             }
             .cornerRadius(25)
             .padding()
