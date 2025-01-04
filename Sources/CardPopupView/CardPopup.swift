@@ -1,13 +1,10 @@
 import SwiftUI
 
 @available(iOS 14.0, macOS 10.15, tvOS 13.0, *)
-struct CardPopup: View {
+struct CardPopup<CardContent: View>: View {
     @Binding var isPresented: Bool
     @State private var offset: CGFloat = 0
-    
-    public init(isPresented: Binding<Bool>) {
-        self._isPresented = isPresented
-    }
+    var content: () -> CardContent
     
     public var body: some View {
         GeometryReader { proxy in
@@ -28,6 +25,8 @@ struct CardPopup: View {
                     .padding()
                 }
                 .frame(maxHeight: .infinity, alignment: .topLeading)
+                
+                content()
             }
             .cornerRadius(25)
             .padding()
@@ -44,3 +43,12 @@ struct CardPopup: View {
         }
     }
 }
+
+//@available(iOS 14.0, macOS 10.15, tvOS 13.0, *)
+//extension CardPopup where CardContent == EmptyView {
+//    init(isPresented: Binding<Bool>) {
+//        self.init(isPresented: isPresented) {
+//            EmptyView()
+//        }
+//    }
+//}

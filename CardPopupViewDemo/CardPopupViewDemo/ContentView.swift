@@ -17,7 +17,9 @@ struct ContentView: View {
                 self.isCardPresented.toggle()
             }
         }
-        .cardPopupView(isPresented: $isCardPresented)
+        .cardPopupView(isPresented: $isCardPresented) {
+            EmptyView()
+        }
     }
 }
 
